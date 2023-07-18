@@ -1,44 +1,35 @@
-# Automated Test for Adding Item to Shopping Cart
 
-This repository contains an automated test suite to validate the functionality of adding an item to the shopping cart on our e-commerce website.
+# Pokemon Moves Viewer
 
- 
-## Introduction
-
-The purpose of this automated test suite is to ensure that the "Add to Cart" feature on our e-commerce platform works as expected. The test scenarios cover different user interactions, including logging in to the user account, searching for an item using the search bar, and adding the item to the shopping cart.
-
-
-## Prerequisites
-
-Before running the automated tests, make sure you have the following installed:
-
- - Java Development Kit (JDK) 8 or higher
- - Maven build tool
- - Chrome or Firefox web browser
- - ChromeDriver or GeckoDriver (depending on the browser you choose)
+This Python script retrieves and prints information about Pokemon moves using the PokeAPI. It makes use of concurrent processing to fetch data for multiple moves simultaneously, improving the efficiency of the process.
 
 ## Installation
 
- 1. Clone this repository to your local machine.
- 2. Navigate to the project root directory.
- 3. Install the required Java dependencies using Maven:
+1.  Clone this repository to your local machine.
+2.  Install the required Python packages using pip:
 
-`mvn clean install`
 
-## Running the Tests
+`pip install requests openpyxl` 
 
-To execute the automated test suite, use the following command:
+## Usage
 
-`mvn clean verify` 
+Simply run the Python script to start fetching and printing the names of all 900 Pokemon moves. The script will use 10 concurrent processes to speed up the process.
 
-By running this command, the tests will be executed using the Serenity BDD framework with the Screenplay pattern. The test results will be displayed in the console, and a detailed HTML report will be generated in the "target/site/serenity" directory.
 
-## Test Scenarios
+`python pokemon_moves_viewer.py` 
 
-### Scenario 1: Add Item To Shopping Cart
+The script will display the names of moves in batches of 20, followed by a horizontal line to separate the batches.
 
-`Given That the user is able to login to its own account`
-`When He searches for an item in the search bar`
-`Then He is able to add the item "Producto" to the shopping cart` 
+## Functionality
 
-This scenario validates the end-to-end process of adding the item "Producto" to the shopping cart after the user successfully logs in and performs a search using the search bar.
+The script includes the following main functions:
+
+1.  `obtener_nombre_movimiento(move_id)`: Retrieves the name of a Pokemon move by its ID using the PokeAPI.
+    
+2.  `obtener_nombres_movimientos(start_id, end_id)`: Retrieves the names of Pokemon moves within a specified range of IDs. It uses the `obtener_nombre_movimiento` function and returns a list of move names.
+    
+3.  `imprimir_salto_linea(moves)`: Prints the names of Pokemon moves in the provided list with a line break after each move.
+    
+4.  `imprimir_nombres_movimientos()`: Initiates the concurrent fetching of move names using 10 threads, divided into batches of 20 moves each.
+    
+5.  `guardar_movimientos(moveset)`: Saves the names of Pokemon moves into an Excel file named "Moveset.xlsx."
